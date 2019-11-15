@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "YourTube",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "Most and Least viewed YouTube videos",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
