@@ -1,104 +1,92 @@
-var $reminderTitle = $("#reminder-title");
-var $reminderTime = $("#reminder-time");
-var $submitBtn = $("#submit");
-var $reminderList = $("#reminder-list");
+var now = moment();
+var timeNow = moment().format("h:mm a");
+var reminderNow = [];
+var timeTodayArr = [];
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveReminder: function (reminder) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/reminders",
-      data: JSON.stringify(reminder)
+//----------------------------
+window.onload = function() {
+  console.log("present.js loaded");
+  console.log(timeNow);
+  // Make a get request to our api route that will return every book
+  $.get("/api/present", function(data) {
+    // For each book that our server sends us back
+    for (var i = 0; i < data.length; i++) {
+      // Create a parent div to hold book data
+      var reminderSection = $("<div>");
+      // Add a class to this div: 'well'
+      reminderSection.addClass("well");
+      // Add an id to the well to mark which well it is
+      reminderSection.attr("id", "reminder-show" + i);
+      // Append the well to the well section
+      $("#reminderSection").append(reminderSection);
+      // console.log(moment(data[i].time,"HH:mm:ss" ).format('h:mm a'))
+      var time = moment(data[i].time, "HH:mm:ss").format("h:mm a");
+      // Now  we add our book data to the well we just placed on the page
+      $("#reminder-show" + i).append(
+        "<h5>" + (i + 1) + ". " + data[i].title + "</h5>"
+      );
+      $("#reminder-show" + i).append("<h6>Date: " + data[i].date + "</h6>");
+      $("#reminder-show" + i).append("<h6>Time: " + time + "</h6>");
+      $("#reminder-show" + i).append(
+        "<button class='update' data-id='" + data[i].id + "'>EDIT</button>"
+      );
+      $("#reminder-show" + i).append(
+        "<button class='delete' data-id='" + data[i].id + "'>DELETE</button>"
+      );
+      // save todays times and reminders in the arrays
+      timeTodayArr.push(data[i].time);
+      reminderNow.push(data[i].title);
+      console.log(timeTodayArr, reminderNow);
+    }
+    $(".delete").click(function() {
+      $.ajax({
+        method: "DELETE",
+        url: "/api/reminder/" + $(this).attr("data-id")
+      })
+        // On success, run the following code
+        .then(function() {
+          console.log("Deleted Successfully!");
+        });
+      window.location.reload();
     });
-  },
-  getReminders: function () {
-    return $.ajax({
-      url: "api/reminders",
-      type: "GET"
+    $(".update").click(function() {
+      $.ajax({
+        method: "PUT",
+        url: "/api/reminder/" + $(this).attr("data-id")
+      })
+        // On success, run the following code
+        .then(function() {
+          console.log("Updated Successfully!");
+        });
+      // $(this).closest("#reminder-show" + i).remove();
     });
-  },
-  deleteReminder: function (id) {
-    return $.ajax({
-      url: "api/reminders/" + id,
-      type: "DELETE"
-    });
-  },
-  updateReminder: function (id) {
-    return $.ajax({
-      url: "api/reminders/" + id,
-      type: "UPDATE"
-    });
+    // $(this).closest("#reminder-show" + i).remove();
+  });;
+};;
+// run setInterval function to start comparing current time with the reminder time
+setInterval(function() {
+  // if the current time equals a time in our timeTodayArr
+  for (let i = 0; i < timeTodayArr.length; i++) {
+    //  console.log(timeNow)
+    var now = moment().format("HH:mm:00");
+    console.log(now);
+    console.log(timeTodayArr[i]);
+    //  moment = moment.format()
+    if (now === timeTodayArr[i]) {
+      // console.log(timeTodayArr);
+      if (window.Notification && Notification.permission !== "denied") {
+        Notification.requestPermission(function(status) {
+         // status is "granted", if accepted by user
+          var n = new Notification("Reminder", {
+            body: reminderNow[i]
+            // icon: '/path/to/icon.png' // optional
+          });
+        });
+      }
+      console.log("alert is working");
+      //  alert(reminderNow[i]);
+    }
   }
-};
-
-// refreshReminders gets new reminders from the db and repopulates the list
-var refreshReminders = function () {
-  API.getReminders().then(function (data) {
-    var $reminders = data.map(function (reminder) {
-      var $a = $("<a>")
-        .Title(reminder.Title)
-        .attr("href", "/reminder/" + reminder.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": reminder.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .Title("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $reminderList.empty();
-    $reminderList.append($reminders);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new reminder
-// Save the new reminder to the db and refresh the list
-var handleFormSubmit = function (event) {
-  event.preventDefault();
-
-  var reminder = {
-    Title: $reminderTitle.val().trim(),
-    Time: $reminderTime.val().trim()
-  };
-
-  if (!(reminder.Title && reminder.Time)) {
-    alert("You must enter a reminder Title and Time!");
-    return;
-  }
-
-  API.savereminder(reminder).then(function () {
-    refreshreminders();
-  });
-
-  $reminderTitle.val("");
-  $reminderTime.val("");
-};
-
-// handleDeleteBtnClick is called when an reminder's delete button is clicked
-// Remove the reminder from the db and refresh the list
-var handleDeleteBtnClick = function () {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deletereminder(idToDelete).then(function () {
-    refreshreminders();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$reminderList.on("click", ".delete", handleDeleteBtnClick);
+  console.log("this timer is working");
+}, 15000);
+;
