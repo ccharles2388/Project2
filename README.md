@@ -29,7 +29,7 @@ In this activity we will add the provided boilerplate to group project repos.
   git push origin master
   ```
 
-* If completed successfully you should see all of the files uploaded to GitHub.
+* If completed successfully you should see all of the files uploaded to GitHub Repo.
 
 * All other group members should now clone the repo.
 
