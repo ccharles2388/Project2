@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Nova15star",
+    "password": "random04",
     "database": "reminders_db",
     "host": "localhost",
     "dialect": "mysql"
