@@ -1,38 +1,49 @@
-# Project Starter
+# Reminders-Plus
+### Reminders-Plus Node Backend Store Simulation
 
-In this activity we will add the provided boilerplate to group project repos.
+>An Amazon-like CLI storefront built with mySQL, NODE.js and Inquirer NPM. Output styled with Colors and console.table NPM's. The app can take in orders from customers, calculate sales price and deplete stock from the store's inventory. It has an automated inventory audit and alert system that will not allow the customer to order more than quantity availiable in stock.
 
-## Instructions
+### Deployment
 
-* Only one member of each group should complete this activity while the others watch.
+1. Clone repo
+2. Run `npm install`
+3. Build database from `schema.sql`
+4. At command prompt run `server.js`
 
-* Copy the entire 04-STU_PROJECT-STARTER folder to another location on your computers &mdash; wherever you would like your local copy of the group project to be.
+### Data Source Overview:
+1.  Reminders-Plus Main Folder Contains All Source Code
+2.  Reminders-PlusCustomer.js - node application 
+3.  schema.sql - database connection and configuration file
+4.  README.md - application instructions and detail file
+5.  package.json - local environment dependencies and application requirements
+6.  package-lock.json - global environment dependencies and application requirements
+7.  img folder - contains all images used for application including screen shot instructions
+8.  .gitignore - ignores node modules and other non dependent files from storing in         
+    repository 
 
-* Rename the copied folder to the name of your project.
 
-* Open the copied project folder's `package.json` file and change its `name` property to the name of your project.
+### Reminders-Plus Application Screenshots 
 
-* CD to the root of the copied project folder with your terminal and run the following commands:
+1. Customer Runs node Reminders-PlusCustomer.js App
+![GitHub Logo](/img/bazmazon_1.png)
 
-  ```
-  git init
-  git add .
-  git commit -m "Initial commit"
-  ```
+Format: ![Direct Image Link]https://github.com/ccharles2388/Reminders-Plus/blob/master/img/bazmazon_1.png)
+<br>
 
-* Then copy the GitHub repo's remote SSH URL (the same URL you'd use to clone the repo).
+2. Customer Is Displayed Current Products And Inventory Availiable
+![GitHub Logo](/img/bazmazon_2.png)
+<br>
+### Technologies Utilized
 
-* Run the following commands in your terminal, replacing <remote-url> with your GitHub repo's remote SSH URL.
+* mySQL
+* NodeJS
+* JavaScript
+* NPM Inquirer
+* NPM Colors
+* NPM console.table
 
-  ```
-  git remote add origin <remote-url>
-  git push origin master
-  ```
+---
 
-* If completed successfully you should see all of the files uploaded to GitHub Repo.
+### Author
 
-* All other group members should now clone the repo.
-
-* Discuss as a group:
-
-  * How would you now add changes to this project?
+* David Lens * Curtis Charles * Jon-Luc
