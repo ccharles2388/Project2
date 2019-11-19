@@ -41,7 +41,7 @@ Format: ![Direct Image Link]https://github.com/ccharles2388/Reminders-Plus/blob/
 * NPM Inquirer
 * NPM Colors
 * NPM console.table
-
+* Sequelize
 ---
 
 ### Author
