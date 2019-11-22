@@ -4,6 +4,8 @@ var db = require("../models");
 var moment = require("moment");
 
 var today = moment().format("YYYY-MM-DD");
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = function(app) {
   //   // Get all reminders on the addNew page
@@ -31,7 +33,7 @@ module.exports = function(app) {
     db.Reminder.findAll({
       where: {
         date: {
-          lt: today
+          [Op.lt]: new Date(new Date() - 24 * 60 * 60 * 1000)
         }
       }
     }).then(function(dbReminder) {
@@ -44,7 +46,7 @@ module.exports = function(app) {
     db.Reminder.findAll({
       where: {
         date: {
-          $gt: today
+          [Op.gt]: new Date(new Date() + 24 * 60 * 60 * 1000)
         }
       }
     }).then(function(dbReminder) {
