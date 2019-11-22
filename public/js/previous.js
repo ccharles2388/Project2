@@ -1,3 +1,9 @@
+var now = moment();
+var timeNow = moment().format("h:mm a");
+var reminderNow = [];
+var timeTodayArr = [];
+
+//----------------------------
 window.onload = function () {
   console.log("previous.js loaded");
   // Make a get request to our api route that will return every book

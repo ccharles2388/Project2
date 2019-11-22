@@ -31,7 +31,7 @@ module.exports = function(app) {
     db.Reminder.findAll({
       where: {
         date: {
-          $lt: today
+          lt: today
         }
       }
     }).then(function(dbReminder) {
