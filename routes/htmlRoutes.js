@@ -27,7 +27,7 @@ module.exports = function (app) {
       password: req.body.password
       // Need To Send Results To DatabaseTable UserInfos
     }).then(function (results) {
-      res.sendFile(path.join(__dirname, "../views/present.html"));
+      res.redirect("/present");
     });
   });
 
@@ -38,6 +38,7 @@ module.exports = function (app) {
 
   // present route loads the present.html page, where users can enter new reminders to the db
   app.get("/present", function (req, res) {
+
     res.sendFile(path.join(__dirname, "../views/present.html"));
   });
 
