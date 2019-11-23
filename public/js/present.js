@@ -1,4 +1,5 @@
-var now = moment();
+// var now = moment();
+const now = new Date();
 var timeNow = moment().format("h:mm a");
 var reminderNow = [];
 var timeTodayArr = [];
@@ -61,8 +62,8 @@ window.onload = function() {
       // $(this).closest("#reminder-show" + i).remove();
     });
     // $(this).closest("#reminder-show" + i).remove();
-  });;
-};;
+  });
+};
 // run setInterval function to start comparing current time with the reminder time
 setInterval(function() {
   // if the current time equals a time in our timeTodayArr
@@ -76,7 +77,7 @@ setInterval(function() {
       // console.log(timeTodayArr);
       if (window.Notification && Notification.permission !== "denied") {
         Notification.requestPermission(function(status) {
-         // status is "granted", if accepted by user
+           // status is "granted", if accepted by user
           var n = new Notification("Reminder", {
             body: reminderNow[i]
             // icon: '/path/to/icon.png' // optional
@@ -89,4 +90,3 @@ setInterval(function() {
   }
   console.log("this timer is working");
 }, 15000);
-;

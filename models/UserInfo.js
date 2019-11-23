@@ -7,8 +7,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   // UserInfo.associate = function(models) {
-  //   // Associating UserInfo with Posts
-  //   // When an UserInfo is deleted, also delete any associated Posts
+  //   //   // Associating UserInfo with Posts
+  //   //   // When an UserInfo is deleted, also delete any associated Posts
   //   UserInfo.hasMany(models.Reminders, {
   //     onDelete: "cascade"
   //   });
