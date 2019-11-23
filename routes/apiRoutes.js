@@ -53,6 +53,7 @@ module.exports = function(app) {
       res.json(dbReminder);
     });
   });
+  
 
   // add new reminders on the 'addNew' page
   app.post("/api/addNew", function(req, res) {
