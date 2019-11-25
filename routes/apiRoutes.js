@@ -53,7 +53,6 @@ module.exports = function(app) {
       res.json(dbReminder);
     });
   });
-  
 
   // add new reminders on the 'addNew' page
   app.post("/api/addNew", function(req, res) {
@@ -84,15 +83,15 @@ module.exports = function(app) {
   });
 
   // Update a reminder
-  // app.put("/api/reminder/:id", function (req, res) {
-  //   console.log("Reminder ID:");
-  //   console.log(req.params.id);
-  //   db.Reminder.update({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   }).then(function () {
-  //     res.end();
-  //   });
-  // });
+  app.put("/api/reminder/:id", function(req, res) {
+    console.log("Reminder ID:");
+    console.log(req.params.id);
+    db.Reminder.update({
+      where: {
+        id: req.params.id
+      }
+    }).then(function() {
+      res.end();
+    });
+  });
 };
