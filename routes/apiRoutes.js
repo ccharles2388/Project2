@@ -62,7 +62,8 @@ module.exports = function(app) {
     db.Reminder.create({
       title: req.body.title,
       date: req.body.date,
-      time: req.body.time
+      time: req.body.time,
+      emailId: req.body.email
       // alarmType: req.body.alarmType
     }).then(function(results) {
       res.json(results);
