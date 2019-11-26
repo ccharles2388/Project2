@@ -1,5 +1,6 @@
 var $reminderTitle = $("#reminder-title");
 var $reminderTime = $("#reminder-time");
+var $reminderEmail = $("#reminder-email");
 var $submitBtn = $("#submit");
 var $reminderList = $("#reminder-list");
 
@@ -71,20 +72,22 @@ var handleFormSubmit = function(event) {
 
   var reminder = {
     Title: $reminderTitle.val().trim(),
-    Time: $reminderTime.val().trim()
+    Time: $reminderTime.val().trim(),
+    Email: $reminderEmail.val().trim()
   };
 
-  if (!(reminder.Title && reminder.Time)) {
+  if (!(reminder.Title && reminder.Time && reminder.Email)) {
     alert("You must enter a reminder Title and Time!");
     return;
   }
 
   API.savereminder(reminder).then(function() {
-    refreshreminders();
+    refreshReminders();
   });
 
   $reminderTitle.val("");
   $reminderTime.val("");
+  $reminderEmail.val("");
 };
 
 // handleDeleteBtnClick is called when an reminder's delete button is clicked
@@ -95,10 +98,23 @@ var handleDeleteBtnClick = function() {
     .attr("data-id");
 
   API.deletereminder(idToDelete).then(function() {
-    refreshreminders();
+    refreshReminders();
   });
 };
 
-// Add event listeners to the submit and delete buttons
+// handleUpdateBtnClick is called when an reminder's edit button is clicked
+// Update the reminder from the db and refresh the list
+var handleUpdateBtnClick = function() {
+  var idToUpdate = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.updatereminder(idToUpdate).then(function() {
+    refreshReminders();
+  });
+};
+
+// Add event listeners to the submit, delete and upate buttons
 $submitBtn.on("click", handleFormSubmit);
 $reminderList.on("click", ".delete", handleDeleteBtnClick);
+$reminderList.on("click", ".update", handleUpdateBtnClick);

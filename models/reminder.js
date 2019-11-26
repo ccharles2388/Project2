@@ -7,13 +7,15 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.TEXT
   });
 
-  Reminder.associate = function (models) {
+  Reminder.associate = function(models) {
     // We're saying that a Reminder should belong to an Author
     // A Reminder can't be created without an Author due to the foreign key constraint
     Reminder.belongsTo(models.UserInfo, {
-      foreignKey: {
-        allowNull: false
-      }
+      foreignkey: "userInfo",
+      targetKey: "id"
+      // foreignKey: {
+      //   allowNull: false
+      // }
     });
   };
 

@@ -25,7 +25,7 @@ window.onload = function() {
       );
       $("#reminder-show" + i).append("<h6>Date: " + data[i].date + "</h6>");
       $("#reminder-show" + i).append("<h6>Time: " + data[i].time + "</h6>");
-      $("#reminder-show" + i).append("<h6>:Email " + data[i].emailId + "</h6>");
+      $("#reminder-show" + i).append("<h6>:Email " + data[i].email + "</h6>");
       $("#reminder-show" + i).append(
         "<button class='update' data-id='" + data[i].id + "'>EDIT</button>"
       );
@@ -37,7 +37,7 @@ window.onload = function() {
 
       timeTodayArr.push(data[i].time);
       reminderNow.push(data[i].title);
-      emailArr.push(data[i].emailId);
+      emailArr.push(data[i].email);
       console.log(timeTodayArr, reminderNow, emailArr);
     }
 
@@ -83,7 +83,7 @@ $("#addSubmit").on("click", function(event) {
     time: $("#newTime")
       .val()
       .trim(),
-    emailId: $("#newEmail")
+    email: $("#newEmail")
       .val()
       .trim()
   };
