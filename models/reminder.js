@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.TEXT,
     date: DataTypes.STRING,
     time: DataTypes.TIME,
-    alarmType: DataTypes.TEXT
+    alarmType: DataTypes.TEXT,
+    emailId: DataTypes.STRING
   });
 
   // Reminder.associate = function (models) {

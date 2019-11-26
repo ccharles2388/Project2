@@ -77,7 +77,7 @@ setInterval(function() {
       // console.log(timeTodayArr);
       if (window.Notification && Notification.permission !== "denied") {
         Notification.requestPermission(function(status) {
-           // status is "granted", if accepted by user
+          // status is "granted", if accepted by user
           var n = new Notification("Reminder", {
             body: reminderNow[i]
             // icon: '/path/to/icon.png' // optional
