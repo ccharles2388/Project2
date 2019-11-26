@@ -62,8 +62,8 @@ module.exports = function(app) {
       title: req.body.title,
       date: req.body.date,
       time: req.body.time,
-      emailId: req.body.email
-  
+      email: req.body.email
+
       // alarmType: req.body.alarmType
     }).then(function(results) {
       res.json(results);
