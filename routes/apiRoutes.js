@@ -63,6 +63,7 @@ module.exports = function(app) {
       date: req.body.date,
       time: req.body.time,
       emailId: req.body.email
+  
       // alarmType: req.body.alarmType
     }).then(function(results) {
       res.json(results);
