@@ -55,19 +55,28 @@ module.exports = function(app) {
   });
 
   // add new reminders on the 'addNew' page
-  app.post("/api/addNew", function(req, res) {
+  app.post("/api/addNew", async function(req, res) {
     console.log("Reminder Data:");
     console.log(req.body);
+
+    const user = await db.UserInfo.findOne({
+      where: {
+        email: req.body.email
+      }
+    });
+
     db.Reminder.create({
       title: req.body.title,
       date: req.body.date,
       time: req.body.time,
-      email: req.body.email
+      email: req.body.email,
+      UserInfoId: user.id
 
       // alarmType: req.body.alarmType
     }).then(function(results) {
       res.json(results);
     });
+    console.log(user.id);
   });
 
   // Delete a reminder

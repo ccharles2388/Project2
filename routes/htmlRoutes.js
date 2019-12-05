@@ -19,16 +19,16 @@ module.exports = function(app) {
 
   // Post Route For Register
   app.post("/register", function(req, res) {
-    console.log(req.body);;
-    db.UserInfo.create({
+    console.log(req.body);
+    return db.UserInfo.create({
       firstName: req.body.first_name,
       lastName: req.body.last_name,
       email: req.body.email,
       password: req.body.password
       // Need To Send Results To DatabaseTable UserInfos
     }).then(function(results) {
-      res.redirect("/present");
-    });
+        res.redirect("/present");
+      });
   });
 
   // signin route loads signin.html

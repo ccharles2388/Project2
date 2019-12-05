@@ -24,15 +24,25 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
-});
+// Syncing our sequelize models Starting our Express app
+// =============================================================
+async function startup() {
+  const dbOutput = await db.sequelize.sync(syncOptions);
+  console.log("----------------------------");
+  console.log("DATABASE SERVER CONNECTED");
+  console.group("DATABASE CONFIG");
+  console.table(dbOutput.config);
+  console.groupEnd();
+
+  console.group("DATABASE OPTIONS");
+  console.table(dbOutput.options);
+  console.groupEnd();
+
+  await app.listen(PORT);
+  console.log("----------------------------");
+  console.log(`WEB SERVER LISTENING ON: http://localhost:${PORT}`);
+}
+
+startup();
 
 module.exports = app;

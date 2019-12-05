@@ -19,13 +19,14 @@ window.onload = function() {
       // Append the well to the well section
       $("#reminderSection").append(reminderSection);
 
+      var time = moment(data[i].time, "HH:mm:ss").format("h:mm a");
       // Now  we add our book data to the well we just placed on the page
       $("#reminder-show" + i).append(
         "<h5>" + (i + 1) + ". " + data[i].title + "</h5>"
       );
       $("#reminder-show" + i).append("<h6>Date: " + data[i].date + "</h6>");
-      $("#reminder-show" + i).append("<h6>Time: " + data[i].time + "</h6>");
-      $("#reminder-show" + i).append("<h6>:Email " + data[i].email + "</h6>");
+      $("#reminder-show" + i).append("<h6>Time: " + time + "</h6>");
+      $("#reminder-show" + i).append("<h6>Email " + data[i].email + "</h6>");
       $("#reminder-show" + i).append(
         "<button class='update' data-id='" + data[i].id + "'>EDIT</button>"
       );

@@ -81,7 +81,7 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  API.savereminder(reminder).then(function() {
+  API.saveReminder(reminder).then(function() {
     refreshReminders();
   });
 
