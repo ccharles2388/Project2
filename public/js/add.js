@@ -4,6 +4,12 @@ var reminderNow = [];
 var timeTodayArr = [];
 var emailArr = [];
 
+function publishTime() {
+  $("#theTime").html("Current Time: " + timeNow);
+}
+
+setInterval(publishTime, 10);
+
 window.onload = function() {
   console.log("add.js loaded");
   // Make a get request to our api route that will return every book

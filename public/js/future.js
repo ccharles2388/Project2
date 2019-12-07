@@ -1,3 +1,11 @@
+var timeNow = moment().format("h:mm a");
+
+function publishTime() {
+  $("#theTime").html("Current Time: " + timeNow);
+}
+
+setInterval(publishTime, 10);
+
 window.onload = function() {
   console.log("future.js loaded");
   // Make a get request to our api route that will return every book

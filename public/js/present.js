@@ -4,6 +4,12 @@ var timeNow = moment().format("h:mm a");
 var reminderNow = [];
 var timeTodayArr = [];
 
+function publishTime() {
+  $("#theTime").html("Current Time: " + timeNow);
+}
+
+setInterval(publishTime, 10);
+
 //----------------------------
 window.onload = function() {
   console.log("present.js loaded");
