@@ -21,6 +21,8 @@ To provide a shared view of tasks that must be done, using reminders with alerts
 
 <h3> App demo </h3>
 
+[Reminders-Plus](https://reminders-dave.herokuapp.com/)
+
 ![alt text](./public/img/reminders-plus2.png "Reminders-Plus App")
 
 
