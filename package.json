@@ -10,7 +10,7 @@
     "watch": "nodemon server.js",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u bdd --reporter spec --exit"
   },
-  "author": "David Levens",
+  "author": "David Levens, Curtis Charles",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
