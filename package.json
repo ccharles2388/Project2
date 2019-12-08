@@ -1,5 +1,5 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "Reminders-Plus",
   "version": "1.0.0",
   "description": "Project 2 Starter",
   "main": "server.js",
@@ -10,6 +10,7 @@
     "watch": "nodemon server.js",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u bdd --reporter spec --exit"
   },
+  "author": "David Levens",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
